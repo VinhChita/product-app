@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::orderBy('id', 'desc')->get();
+        $products = Product::orderBy('id', 'desc')->paginate(5);
         return view('products.index', compact('products'));
     }
     public function create()
@@ -56,5 +56,19 @@ class ProductController extends Controller
         }
         $product->update($data);
         return redirect()->route('products.show', $product);
+    }
+    public function destroy(Product $product)
+    {
+        if (
+            $product->photo && Storage::disk('public')
+            ->exists($product->photo)
+        ) {
+            Storage::disk('public')->delete($product->photo);
+        }
+        $product->delete();
+        return redirect()->route('products.index')->with(
+            'status',
+            'Product deleted successfully.'
+        );
     }
 }

@@ -1,8 +1,8 @@
 <x-layout>
-    <h1>Product List</h1>
+    <h1​​ class="color">Product List</h1​​>
     <hr>
     <!-- បង្ហាញ message flash របស់ការលុបទិន្នន័យេជោគជ័យ​ -->
-    @if (sesion('status'))
+    @if (session('status'))
     <div class="alert alert-danger">{{ sesion('status')}}</div>
     @endif
     <!-- បញ្ចប់ការបញ្ចបើ message -->
@@ -27,4 +27,6 @@ fa-circle-info"> </i> View Details</a>
         </div>
     </div> <br>
     @endforeach
+    <!-- កូដខាងក្រោមប្រើដើម្បីបង្ហាញរបស់ pagination -->
+    {{ $products->links('pagination::bootstrap-5') }}
 </x-layout>
