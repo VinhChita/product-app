@@ -1,6 +1,12 @@
 <x-layout>
     <h1>Product List</h1>
     <hr>
+    <!-- បង្ហាញ message flash របស់ការលុបទិន្នន័យេជោគជ័យ​ -->
+    @if (sesion('status'))
+    <div class="alert alert-danger">{{ sesion('status')}}</div>
+    @endif
+    <!-- បញ្ចប់ការបញ្ចបើ message -->
+    </div>
     <div>
         <a href="{{ route('products.create') }}" class="btn btn-primary">Add New Product</a>
     </div>
